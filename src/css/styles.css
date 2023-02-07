@@ -1,0 +1,105 @@
+@import url('https://sericakitty.github.io/css/app.38b11d93.css'); 
+
+
+:root {
+    --main-btn-color: rgb(245, 111, 245);
+}
+
+.btn {
+    color: var(--btn-text-color);
+    background-color: var(--main-btn-color);
+    border-radius: 8px;
+    width: fit-content;
+    margin-top: 5px;
+}
+
+
+main {
+    margin: 0 auto;
+}
+
+#header {
+    text-align: center;
+}
+
+.sourcecode {
+    display: inline-block;
+    text-align: center;
+}
+
+.sourcecodelink {
+    color: var(--src-code-color);
+}
+
+.sourcecodelink:hover {
+    color: var(--src-code-hover);
+}
+
+
+.centeringcontainer {
+    text-align: center;
+    margin: 0 auto;
+}
+
+
+#startBoardsizeSectionDiv {
+    display: none;
+}
+
+
+#boardTableDiv {
+    display: none;
+}
+
+#boardTableDiv > p {
+    resize: none;
+    height: 25px;
+    width: fit-content;
+    margin-bottom: 10px;
+}
+
+#staticInfoDiv > p{
+    empty-cells: show;
+    max-width: 300px;
+    margin-bottom: 5px;
+}
+
+#gameButtonDiv {
+    width: fit-content;
+}
+
+#newGameButton {
+    display: none;
+}
+#resetGameButton {
+    display: none;
+}
+
+#winnerInfoDiv {
+    resize: none;
+    empty-cells: show;
+    height: 30px;
+}
+
+
+table {
+    
+    margin-left: auto;
+    margin-right: auto;
+    border-top: 1px solid magenta;
+    empty-cells: show;
+}
+
+
+
+td {
+    cursor: pointer;
+    top: '0px';
+    text-align: center; 
+    vertical-align: middle;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid magenta;
+    padding: 0;
+}
+
