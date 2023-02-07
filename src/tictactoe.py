@@ -55,6 +55,37 @@ gameState = {
         
     }
 
+def getStarterTurn():
+    booleans = [True, False]
+    return booleans.pop(random.randint(0, len(booleans) - 1))
+
+def getMarks():
+    characters = ['X', 'O']
+    first = characters.pop(random.randint(0, len(characters) - 1))
+    last = characters[0]
+    return first, last
+
+def displayTurns():
+    if gameState['player_one']["turn"]:
+        boardTableTurnInfo.textContent = f"It's {gameState['player_one']['name']} '{gameState['player_one']['mark']}' turn"
+    else:
+        boardTableTurnInfo.textContent = f"It's {gameState['player_two']['name']} '{gameState['player_two']['mark']}' turn"
+
+def displayMarks():
+    boardTableMarkInfo.textContent = f'{gameState["player_one"]["name"]}: {gameState["player_one"]["mark"]}    {gameState["player_two"]["name"]}: {gameState["player_two"]["mark"]}'
+
+def checkValidBox(event, player):
+    """
+    Function will check if box is empty and player's mark is eather "X" or "O" 
+    """
+    return event.target.textContent == "" and (player['mark'] == "X" or player['mark'] == "O")
+    
+def changeValue(event, mark):
+    """
+    Function will update mark
+    """
+    event.target.textContent = mark
+
 
 
 def initBoard(el, size):
@@ -67,6 +98,7 @@ def initBoard(el, size):
     
     if gameState['init_board']: 
         
+        displayTurns()
         
         el.style.display = 'block'
         
@@ -101,8 +133,8 @@ def initBoard(el, size):
             table.appendChild(tr)
         
         
+        displayMarks()
         
-        boardTableMarkInfo.textContent = f'{gameState["player_one"]["name"]}: {gameState["player_one"]["mark"]}    {gameState["player_two"]["name"]}: {gameState["player_two"]["mark"]}'
         
         gameState['init_board'] = False
         gameState['board'] = boardList
@@ -167,7 +199,7 @@ def checkMouseClick(event):
             return True
     
     return False
-        
+
     
 def checkBoardSize(el):
     
@@ -176,8 +208,6 @@ def checkBoardSize(el):
     """
     
     startBoardsizeSectionDiv.style.display = 'none'
-    
-    boardTableTurnInfo.textContent = f'"{gameState["player_one"]["mark"] if gameState["player_one"]["turn"] else gameState["player_two"]["mark"]}" turn'
     
     size = gameState[el.value]["size"]
     
@@ -254,6 +284,8 @@ def check_winner(player):
     
     if get_winner or get_tie:
         gameState['play'] = False
+        
+        
         newGameButton.style.display = 'inline-block'
         resetGameButton.style.display = 'inline-block'
         
@@ -263,20 +295,10 @@ def check_winner(player):
         return True
         
     # No winner found
-    boardTableTurnInfo.textContent = f'"{gameState["player_one"]["mark"] if gameState["player_one"]["turn"] else gameState["player_two"]["mark"]}" turn'
-    return False
-
-def checkValidBox(event, player):
-    """
-    Function will check if box is empty and player's mark is eather "X" or "O" 
-    """
-    return event.target.textContent == "" and (player['mark'] == "X" or player['mark'] == "O")
     
-def changeValue(event, mark):
-    """
-    Function will update mark
-    """
-    event.target.textContent = mark
+    displayTurns()
+    
+    return False
 
 
 
@@ -307,21 +329,17 @@ def randomPlayerCharacters():
     This function choose randomly first player's mark and how goes first
     """
     
-    if gameState['mode'] != None:
-        characters = ['X', 'O']
-        booleans = [True, False]
-        gameState['player_one']['mark'] = characters.pop(random.randint(0, len(characters) - 1))
-        go_first = booleans.pop(random.randint(0, len(booleans) - 1)) 
-    
-    
     if gameState['mode'] == 'Human Vs Human':
-        if go_first:
+        firstmark, lastmark = getMarks()
+        if getStarterTurn():
             gameState['player_one']['turn'] = True
-            
+            gameState['player_one']['mark'] = firstmark
+            gameState['player_two']['mark'] = lastmark
         else:
             gameState['player_two']['turn'] = True
+            gameState['player_two']['mark'] = firstmark
+            gameState['player_one']['mark'] = lastmark
         
-        gameState['player_two']['mark'] = characters[0]
     
     
     
@@ -390,6 +408,8 @@ def newGame():
     
     winnerInfoDiv.textContent = ""
     gameState['init_board'] = True
+    
+    
     
     initBoard(boardTableDiv, gameState['boardSize'])
 
