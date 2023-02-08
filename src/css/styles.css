@@ -1,4 +1,4 @@
-@import url('https://sericakitty.github.io/css/app.38b11d93.css'); 
+@import url('https://sericakitty.github.io/styles.css');
 
 
 :root {
@@ -51,14 +51,14 @@ main {
     display: none;
 }
 
-#boardTableDiv > p {
+#boardTableDiv>p {
     resize: none;
     height: 25px;
     width: fit-content;
     margin-bottom: 10px;
 }
 
-#staticInfoDiv > p{
+#staticInfoDiv>p {
     empty-cells: show;
     max-width: 300px;
     margin-bottom: 5px;
@@ -71,6 +71,7 @@ main {
 #newGameButton {
     display: none;
 }
+
 #resetGameButton {
     display: none;
 }
@@ -83,7 +84,7 @@ main {
 
 
 table {
-    
+
     margin-left: auto;
     margin-right: auto;
     border-top: 1px solid magenta;
@@ -95,11 +96,10 @@ table {
 td {
     cursor: pointer;
     top: '0px';
-    text-align: center; 
+    text-align: center;
     vertical-align: middle;
     margin-left: auto;
     margin-right: auto;
     border: 1px solid magenta;
     padding: 0;
 }
-
